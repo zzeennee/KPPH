@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -44,7 +45,7 @@ public class Letter {
     private int letterReceiveTargetIdx;
 
     @Column
-    @CreationTimestamp
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Comment("편지받은시간")
     private Date letterReceiveDate;
@@ -89,7 +90,6 @@ public class Letter {
     private String letterReportContent;
 
     @Column
-    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Comment("신고일시")
     private Date letterReportDate;

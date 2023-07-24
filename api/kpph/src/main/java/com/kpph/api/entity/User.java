@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -43,7 +44,6 @@ public class User {
     private String userInfo;
 
     @Column
-    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Comment("사용자 생일")
     private Date userBirth;
@@ -56,16 +56,13 @@ public class User {
     private Date userJoinDate;
 
     @Column
-    @CreationTimestamp
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
     @Comment("사용자 접속 일자")
     private Date userAccessDate;
 
     @Column
-    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
     @Comment("사용자 정보 수정 일자")
     private Date userModifyDate;
 
