@@ -1,16 +1,18 @@
 package com.kpph.api.practice.entity;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Table(name="practice")
 @Entity
 public class Practice {
@@ -36,7 +38,6 @@ public class Practice {
     @Column
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
     @Comment("인서트시 시간입력 테스트")
     private Date practiceInsertDate;
 
