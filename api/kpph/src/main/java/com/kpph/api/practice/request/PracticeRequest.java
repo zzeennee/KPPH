@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class PracticeRequest {
+
     private Integer practiceIntegerData;
     private String practiceTextData;
     private String practiceLongTextData;
