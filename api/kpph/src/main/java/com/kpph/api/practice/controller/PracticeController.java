@@ -1,11 +1,11 @@
 package com.kpph.api.practice.controller;
 
+import com.kpph.api.practice.request.PracticeCreate;
 import com.kpph.api.practice.request.PracticeRequest;
 import com.kpph.api.practice.response.PracticeResponse;
 import com.kpph.api.practice.service.PracticeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,14 +20,9 @@ public class PracticeController {
         return "hello, World!";
     }
 
-    @GetMapping("/insert")
-    public void insert() {
-        PracticeRequest practiceRequest = PracticeRequest.builder()
-                .practiceIntegerData(0413)
-                .practiceTextData("텍스트데이터")
-                .practiceLongTextData("롱텍스트데이터")
-                .build();
-        practiceService.insert(practiceRequest);
+    @PostMapping("/practice")
+    public void insert(@RequestBody PracticeCreate practiceCreate) {
+        practiceService.insert(practiceCreate);
     }
 
     @GetMapping("/selectOne")

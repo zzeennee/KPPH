@@ -3,6 +3,7 @@ package com.kpph.api.practice.service;
 import com.kpph.api.practice.entity.Practice;
 import com.kpph.api.practice.entity.PracticeEditor;
 import com.kpph.api.practice.repository.PracticeRepository;
+import com.kpph.api.practice.request.PracticeCreate;
 import com.kpph.api.practice.request.PracticeRequest;
 import com.kpph.api.practice.response.PracticeResponse;
 import lombok.RequiredArgsConstructor;
@@ -17,11 +18,11 @@ import java.util.stream.Collectors;
 public class PracticeService {
     private final PracticeRepository practiceRepository;
 
-    public void insert(PracticeRequest practiceRequest) {
+    public void insert(PracticeCreate practiceCreate) {
         Practice practice = Practice.builder()
-                .practiceIntegerData(practiceRequest.getPracticeIntegerData())
-                .practiceTextData(practiceRequest.getPracticeTextData())
-                .practiceLongTextData(practiceRequest.getPracticeLongTextData())
+                .practiceIntegerData(practiceCreate.getPracticeIntegerData())
+                .practiceTextData(practiceCreate.getPracticeTextData())
+                .practiceLongTextData(practiceCreate.getPracticeLongTextData())
                 .build();
 
         practiceRepository.save(practice);
