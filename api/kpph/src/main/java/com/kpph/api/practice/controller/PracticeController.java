@@ -5,18 +5,24 @@ import com.kpph.api.practice.request.PracticeRequest;
 import com.kpph.api.practice.response.PracticeResponse;
 import com.kpph.api.practice.service.PracticeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
+@RequestMapping("/api")
 public class PracticeController {
 
     private final PracticeService practiceService;
 
     @GetMapping("/helloWorld")
     public String test () {
+
+        log.info("/api/helloWorld 호출");
+
         return "hello, World!";
     }
 
