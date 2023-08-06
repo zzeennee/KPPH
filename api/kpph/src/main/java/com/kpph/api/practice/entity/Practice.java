@@ -56,4 +56,17 @@ public class Practice {
         this.practiceInsertDate = practiceInsertDate;
         this.practiceUpdateDate = practiceUpdateDate;
     }
+
+    public PracticeEditor.PracticeEditorBuilder toEditor() {
+        return PracticeEditor.builder()
+                .practiceIntegerData(practiceIntegerData)
+                .practiceTextData(practiceTextData)
+                .practiceLongTextData(practiceLongTextData);
+    }
+
+    public void edit(PracticeEditor practiceEditor) {
+        this.practiceIntegerData = practiceEditor.getPracticeIntegerData();
+        this.practiceTextData = practiceEditor.getPracticeTextData();
+        this.practiceLongTextData = practiceEditor.getPracticeLongTextData();
+    }
 }
