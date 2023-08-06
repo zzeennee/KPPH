@@ -1,13 +1,11 @@
 package com.kpph.api.practice.controller;
 
+import com.kpph.api.practice.entity.Practice;
 import com.kpph.api.practice.request.PracticeRequest;
 import com.kpph.api.practice.response.PracticeResponse;
 import com.kpph.api.practice.service.PracticeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,24 +30,25 @@ public class PracticeController {
         practiceService.insert(practiceRequest);
     }
 
-    @GetMapping("/selectOne")
+    /*@GetMapping("/selectOne")
     public PracticeResponse selectOne() {
-        return practiceService.selectOne(2);
-    }
+        return practiceService.selectOne();
+    }*/
 
-    @GetMapping("/selectList")
+    /*@GetMapping("/selectList")
     public List<PracticeResponse> selectList() {
         return practiceService.selectList();
-    }
+    }*/
 
     @PutMapping("/update/{}")
     public void update() {
 
     }
 
-    @DeleteMapping("/delete/{}")
-    public void delete() {
-
+    //230806 pjh 삭제 기능 추가
+    @GetMapping("/delete/{practiceIdx}")
+    public void delete(@PathVariable("practiceIdx") Integer practiceIdx) {
+        practiceService.delete(practiceIdx);
     }
 
 

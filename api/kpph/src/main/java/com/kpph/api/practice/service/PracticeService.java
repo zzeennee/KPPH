@@ -3,11 +3,9 @@ package com.kpph.api.practice.service;
 import com.kpph.api.practice.entity.Practice;
 import com.kpph.api.practice.repository.PracticeRepository;
 import com.kpph.api.practice.request.PracticeRequest;
-import com.kpph.api.practice.response.PracticeResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +23,7 @@ public class PracticeService {
     }
 
 
-    public Practice selectOne1(Integer practiceIdx) { // 엔티티 리턴
+    public Practice selectOne(Integer practiceIdx) { // 엔티티 리턴
         Practice practice = practiceRepository.findById(practiceIdx).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
 
         return practice;
@@ -33,16 +31,16 @@ public class PracticeService {
 
 
 
-    public PracticeResponse selectOne2(Integer practiceIdx) {  // VO리턴
+  /*  public PracticeResponse selectOne2(Integer practiceIdx) {  // VO리턴
         // practiceRepository == 엔티티
         // 엔티티 -> VO
         Practice practice =  practiceRepository.findById(practiceIdx).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
         PracticeResponse practiceResponse = new PracticeResponse(practice);
 
         return practiceResponse;
-    }
+    }*/
 
-    public PracticeResponse selectOne3(Integer practiceIdx) {
+   /* public PracticeResponse selectOne3(Integer practiceIdx) {
         Practice practice = practiceRepository.findById(practiceIdx).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다.")); // 엔티티
 
         PracticeResponse practiceResponse = PracticeResponse.builder()
@@ -56,22 +54,24 @@ public class PracticeService {
 
         // 빌더를 통해서 엔티티를 VO로 변환
         return practiceResponse;
-    }
+    }*/
 
-    public List<PracticeResponse> selectList() {
+   /* public List<PracticeResponse> selectList() {
         practiceRepository.findAll();
 
 
 
         return practiceResponseList.stream().map();
-    }
+    }*/
 
     public void update() {
 
     }
 
-    public void delete() {
-
+    @Transactional //230806 pjh 해당 메소드에서 일어나는 로직이 모두 정상적으로 수행이 되어야만 최종적으로 DB에 commit
+    public void delete(Integer practiceIdx) {
+        Practice practice = practiceRepository.findById(practiceIdx).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
+        practiceRepository.delete(practice);
     }
 
 }
