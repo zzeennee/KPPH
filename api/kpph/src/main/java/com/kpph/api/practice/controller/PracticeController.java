@@ -1,5 +1,6 @@
 package com.kpph.api.practice.controller;
 
+import com.kpph.api.practice.entity.Practice;
 import com.kpph.api.practice.request.PracticeCreate;
 import com.kpph.api.practice.request.PracticeRequest;
 import com.kpph.api.practice.response.PracticeResponse;
@@ -33,8 +34,10 @@ public class PracticeController {
 
     @GetMapping("/selectOne")
     public PracticeResponse selectOne() {
+      
         return practiceService.selectOne(1);
     }
+
 
     @GetMapping("/selectList")
     public List<PracticeResponse> selectList() {
@@ -51,9 +54,16 @@ public class PracticeController {
         practiceService.update(1, practiceRequest);
     }
 
+
+    //230806 pjh 삭제 기능 추가
+    @GetMapping("/delete/{practiceIdx}")
+    public void delete(@PathVariable("practiceIdx") Integer practiceIdx) {
+        practiceService.delete(practiceIdx);
+
     @GetMapping("/delete")
-    public void delete() {
+    public void deleteAll() {
         practiceService.delete();
+
     }
 
 
